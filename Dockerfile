@@ -26,6 +26,7 @@ RUN dpkg --add-architecture i386 && \
 	git-core \
 	gperf \
 	iproute2 \
+        jq \
 	lcov \
 	libglib2.0-dev \
 	libpcap-dev \
