@@ -1,7 +1,5 @@
 FROM ubuntu:20.04
 
-LABEL org.opencontainers.image.source https://github.com/SiemaApplications/zephyr-arm-docker-image
-
 ARG UID=1000
 ARG GID=1000
 
