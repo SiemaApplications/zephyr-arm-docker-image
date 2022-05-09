@@ -43,6 +43,7 @@ RUN dpkg --add-architecture i386 && \
 	python3-pip \
 	python3-ply \
 	python3-setuptools \
+	python-is-python3 \
 	python-xdg \
 	qemu \
 	socat \
