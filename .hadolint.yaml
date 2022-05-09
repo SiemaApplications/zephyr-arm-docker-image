@@ -1,0 +1,3 @@
+ignored:
+  - DL3008 # do not pin apt packages versions
+  - DL3013 # do not pin pip packages versions
