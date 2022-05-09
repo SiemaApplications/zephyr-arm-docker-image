@@ -84,6 +84,13 @@ RUN wget -q --show-progress --progress=bar:force:noscroll --no-check-certificate
 	sh "${TOOLCHAIN_SCRIPT}" --quiet -- -d /opt/zephyr-sdk-${ZSDK_VERSION} && \
 	rm "${TOOLCHAIN_SCRIPT}"
 
+ARG GH_VERSION=2.9.0
+ARG GH_DEB=gh_${GH_VERSION}_linux_amd64.deb
+ARG GH_URL=https://github.com/cli/cli/releases/download/v${GH_VERSION}/${GH_DEB}
+RUN wget -q --show-progress --progress=bar:force:noscroll --no-check-certificate ${GH_URL} && \
+	dpkg -i ${GH_DEB} && \
+	rm ${GH_DEB}
+
 RUN groupadd -g $GID -o user \
 	&& useradd --no-log-init --uid $UID --create-home --gid user --groups plugdev user \
 	&& echo 'user ALL = NOPASSWD: ALL' > /etc/sudoers.d/user \
