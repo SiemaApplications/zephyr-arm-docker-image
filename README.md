@@ -17,4 +17,4 @@ docker run -it --rm -u $(id -u ${USER}):$(id -g ${USER}) -v <west top dir>:/src 
 ```
 From the container shell `west` command can be run. The files are created with the same user id and group id as the user who ran the `docker run` command.
 
-> :warning: It is not yet possible to flash applications from the container image nor it is possible to flash from the host application which have been compiled from the container image using `west`.
+> :warning: It is not yet possible to flash applications from the container image nor is it possible to flash from the host application which have been compiled from the container image using `west`.
