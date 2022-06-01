@@ -62,9 +62,9 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ARG ZEPHYR_VERSION=v2.7.0
+ARG ZEPHYR_VERSION=v3.0.0
 # mcuboot version retrieved from zephyr's manifest at ZEPHYR_VERSION.
-ARG MCUBOOT_VERSION=70bfbd21cdf5f6d1402bc8d0031e197222ed2ec0
+ARG MCUBOOT_VERSION=89936c338e46f43cb177a8b928cd80b90f3ace8f
 
 # Install required python package minus imgtool, for which we want to use the one delivered with mcuboot's project
 RUN pip3 install --no-cache-dir wheel &&\
@@ -77,14 +77,14 @@ RUN pip3 install --no-cache-dir wheel &&\
 
 RUN mkdir -p /opt/
 
-ARG ZSDK_VERSION=0.13.1
+ARG ZSDK_VERSION=0.13.2
 ARG ARCH=arm
 ARG TOOLCHAIN_SCRIPT=zephyr-toolchain-${ARCH}-${ZSDK_VERSION}-linux-x86_64-setup.run
 RUN wget -q --show-progress --progress=bar:force:noscroll --no-check-certificate https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZSDK_VERSION}/${TOOLCHAIN_SCRIPT} && \
 	sh "${TOOLCHAIN_SCRIPT}" --quiet -- -d /opt/zephyr-sdk-${ZSDK_VERSION} && \
 	rm "${TOOLCHAIN_SCRIPT}"
 
-ARG GH_VERSION=2.9.0
+ARG GH_VERSION=2.11.3
 ARG GH_DEB=gh_${GH_VERSION}_linux_amd64.deb
 ARG GH_URL=https://github.com/cli/cli/releases/download/v${GH_VERSION}/${GH_DEB}
 RUN wget -q --show-progress --progress=bar:force:noscroll --no-check-certificate ${GH_URL} && \
