@@ -77,14 +77,18 @@ RUN pip3 install --no-cache-dir wheel &&\
 
 RUN mkdir -p /opt/
 
-ARG ZSDK_VERSION=0.13.2
+ARG ZSDK_VERSION=0.14.2
 ARG ARCH=arm
-ARG TOOLCHAIN_SCRIPT=zephyr-toolchain-${ARCH}-${ZSDK_VERSION}-linux-x86_64-setup.run
-RUN wget -q --show-progress --progress=bar:force:noscroll --no-check-certificate https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZSDK_VERSION}/${TOOLCHAIN_SCRIPT} && \
-	sh "${TOOLCHAIN_SCRIPT}" --quiet -- -d /opt/zephyr-sdk-${ZSDK_VERSION} && \
-	rm "${TOOLCHAIN_SCRIPT}"
+ARG TARGET=${ARCH}-zephyr-eabi
+ARG TOOLCHAIN_INSTALL_TARBALL=zephyr-sdk-${ZSDK_VERSION}_linux-x86_64_minimal.tar.gz
+WORKDIR /opt
+RUN wget -q --show-progress --progress=bar:force:noscroll --no-check-certificate \
+        https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZSDK_VERSION}/${TOOLCHAIN_INSTALL_TARBALL} && \
+        tar xf ${TOOLCHAIN_INSTALL_TARBALL} && \
+        ./zephyr-sdk-${ZSDK_VERSION}/setup.sh -h -c -t arm-zephyr-eabi && \
+	rm "/opt/${TOOLCHAIN_INSTALL_TARBALL}"
 
-ARG GH_VERSION=2.11.3
+ARG GH_VERSION=2.13.0
 ARG GH_DEB=gh_${GH_VERSION}_linux_amd64.deb
 ARG GH_URL=https://github.com/cli/cli/releases/download/v${GH_VERSION}/${GH_DEB}
 RUN wget -q --show-progress --progress=bar:force:noscroll --no-check-certificate ${GH_URL} && \

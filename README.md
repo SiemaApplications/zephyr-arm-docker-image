@@ -2,7 +2,7 @@
 
 This repository contains a docker image suitable to compile [zephyr](https://zephyrproject.org/) applications from github actions.
 
-The zephyr sdk version is `0.13.2`, which is the one recommended for zephyr `3.0.0`.
+The zephyr sdk version is `0.14.2`, which is the one recommended for zephyr `3.1.0`.
 
 ## Local usage
 
