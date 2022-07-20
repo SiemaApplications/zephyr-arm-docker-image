@@ -62,9 +62,9 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ARG ZEPHYR_VERSION=v3.0.0
+ARG ZEPHYR_VERSION=v3.1.0
 # mcuboot version retrieved from zephyr's manifest at ZEPHYR_VERSION.
-ARG MCUBOOT_VERSION=89936c338e46f43cb177a8b928cd80b90f3ace8f
+ARG MCUBOOT_VERSION=e58ea98aec6e5539c5f872a98059e461d0155bbb
 
 # Install required python package minus imgtool, for which we want to use the one delivered with mcuboot's project
 RUN pip3 install --no-cache-dir wheel &&\
